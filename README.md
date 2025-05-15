@@ -1,4 +1,7 @@
-# zencast
+<p align = "center">
+Zencast 
+</p>
+
 
 ## Folder structuring and some files :
 
@@ -47,6 +50,44 @@ zencast/
 ├── package.json              # Root package.json
 └── README.md                 # Project documentation
 ```
+
+
+
+
+## Features
+- Browser-based local recording with WebRTC
+- Chunked uploads to S3 with resume capability
+- Automatic video rendering with dynamic layouts
+- Real-time communication between participants
+
+## Tech Stack
+- **Frontend**: React, TypeScript, TailwindCSS, Redux
+- **Backend**: Node.js, Express, PostgreSQL, Redis
+- **Real-time**: WebRTC, Socket.IO
+- **Storage**: AWS S3
+- **Video Processing**: FFmpeg, Puppeteer
+
+## Setup
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Set up PostgreSQL and Redis
+4. Configure AWS credentials
+5. Copy `.env.example` to `.env` and fill in values
+6. Run migrations: `npm run migrate`
+7. Start services:
+   - Backend: `npm run start:server`
+   - Frontend: `npm run start:client`
+   - Worker: `npm run start:worker`
+
+## Development Scripts
+- `npm run dev`: Start all services in development
+- `npm run build`: Build all services
+- `npm run test`: Run tests
+
+
+
+
 
 
 
