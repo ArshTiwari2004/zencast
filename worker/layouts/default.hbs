@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+    }
+    .container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+    .participant {
+      position: absolute;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+    .participant.speaking {
+      border-color: #4CAF50;
+    }
+    .participant-name {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      color: white;
+      background: rgba(0,0,0,0.7);
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    .timestamp {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: white;
+      background: rgba(0,0,0,0.7);
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    {{#each participants}}
+      <div class="participant {{#if isSpeaking}}speaking{{/if}}" 
+           style="width: {{../width}}px; height: {{../height}}px;">
+        <div class="participant-name">{{name}}</div>
+      </div>
+    {{/each}}
+    <div class="timestamp">{{formatTime timestamp}}</div>
+  </div>
+
+  <script>
+    function formatTime(timestamp) {
+      const date = new Date(timestamp)
+      return date.toLocaleTimeString()
+    }
+  </script>
+</body>
+</html>
+{{!--
+  This template is designed to be used in a web application that displays a grid of participants in a video call.
+  Each participant's name and speaking status are displayed, along with a timestamp at the top right corner.
+  The layout is responsive and adjusts based on the number of participants.
