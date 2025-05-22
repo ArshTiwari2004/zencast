@@ -82,7 +82,7 @@ const useIndexedDB = () => {
   ) => {
     if (!db) return
 
-    return newPromise<void>((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       const transaction = db.transaction('chunks', 'readwrite')
       const store = transaction.objectStore('chunks')
 

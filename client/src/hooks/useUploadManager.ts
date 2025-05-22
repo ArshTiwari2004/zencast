@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import api from '../services/api'
-import { useIndexedDB } from './useIndexedDB'
+import useIndexedDB from './useIndexedDB'
 
 interface UploadState {
   status: 'idle' | 'uploading' | 'paused' | 'completed' | 'error'

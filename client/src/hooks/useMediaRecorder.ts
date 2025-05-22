@@ -11,7 +11,7 @@ interface RecordingState {
 const useMediaRecorder = (stream: MediaStream | null) => {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const recordingIdRef = useRef(uuidv4())
-  const intervalRef = useRef<NodeJS.Timeout | null>(null)
+  const intervalRef = useRef<number | null>(null)
   const [recordingState, setRecordingState] = useState<RecordingState>({
     status: 'idle',
     chunks: [],

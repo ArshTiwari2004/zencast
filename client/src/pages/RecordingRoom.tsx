@@ -35,10 +35,15 @@ const RecordingRoom = () => {
       return
     }
 
-    const cleanup = initWebRTC()
+    let cleanupFn: (() => void) | undefined;
+
+    const promise = initWebRTC();
+    promise.then(fn => {
+      cleanupFn = fn;
+    });
 
     return () => {
-      cleanup && cleanup()
+      if (cleanupFn) cleanupFn();
     }
   }, [roomId, user, initWebRTC, navigate])
 
@@ -72,6 +77,9 @@ const RecordingRoom = () => {
     setIsVideoOn(!isVideoOn)
   }
 
+  // Add this ref at the top of your component, after useState declarations
+  const peerConnectionsRef = React.useRef<{ [id: string]: RTCPeerConnection }>({});
+
   const handleScreenShare = async () => {
     try {
       const stream = await navigator.mediaDevices.getDisplayMedia({
@@ -81,7 +89,7 @@ const RecordingRoom = () => {
       // Replace video track in all peer connections
       const videoTrack = stream.getVideoTracks()[0]
       Object.values(peerConnectionsRef.current).forEach(pc => {
-        const sender = pc.getSenders().find(s => s.track?.kind === 'video')
+        const sender = (pc as RTCPeerConnection).getSenders().find((s: RTCRtpSender) => s.track?.kind === 'video')
         if (sender) {
           sender.replaceTrack(videoTrack)
         }
@@ -100,7 +108,7 @@ const RecordingRoom = () => {
       <div className="flex items-center justify-center h-screen">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Connecting to room...</h1>
-          <p className="text-gray-600">Please wait while zencast connect you to the recording session.</p>
+          <p className="text-gray-600">Please wait while we connect you to the recording session.</p>
         </div>
       </div>
     )
