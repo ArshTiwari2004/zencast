@@ -2,11 +2,13 @@ import ffmpeg from 'fluent-ffmpeg'
 import { join } from 'path'
 import { tmpdir } from 'os'
 import { mkdtemp, rm } from 'fs/promises'
-import { s3Client } from '../config/aws'
+import { s3Client } from '../config/aws.js'
 import { GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3'
 import { createReadStream, createWriteStream } from 'fs'
 import { readFile, writeFile } from 'fs/promises'
-import { compile } from 'handlebars'
+import Handlebars from 'handlebars'
+const { compile } = Handlebars
+
 import puppeteer from 'puppeteer'
 import { v4 as uuidv4 } from 'uuid'
 

@@ -1,6 +1,8 @@
-import { Worker } from 'bull'
-import { redisClient } from './config/redis'
-import { processRecordingJob } from './services/processingService'
+import { Worker } from 'bullmq'
+
+
+import { redisClient } from './config/redis.js'
+import { processRecordingJob } from './services/processingService.js'
 import chalk from 'chalk'
 
 // Initialize Redis connection

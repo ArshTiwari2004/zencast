@@ -1,7 +1,7 @@
 import asyncHandler from 'express-async-handler'
-import Recording from '../models/Recording'
+import Recording from '../models/Recording.js'
 import { v4 as uuidv4 } from 'uuid'
-import { redisClient } from '../config/redis'
+import { redisClient } from '../config/redis.js'
 
 // @desc    Create a new recording session
 // @route   POST /api/recordings

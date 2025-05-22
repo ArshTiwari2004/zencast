@@ -1,5 +1,5 @@
 import { Server } from 'socket.io'
-import { redisClient } from './config/redis'
+import { redisClient } from './config/redis.js'
 
 const initializeSocket = (io) => {
   io.on('connection', (socket) => {
