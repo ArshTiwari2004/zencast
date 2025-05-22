@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth'
+
 import { toast } from 'react-hot-toast'
+import useAuth from '../hooks/useAuth'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -19,7 +20,11 @@ export default function Login() {
       toast.success('Logged in successfully')
       navigate('/dashboard')
     } catch (error) {
-      toast.error(error.message || 'Login failed')
+      if (error instanceof Error) {
+        toast.error(error.message)
+      } else {
+        toast.error('Login failed')
+      }
     } finally {
       setIsLoading(false)
     }

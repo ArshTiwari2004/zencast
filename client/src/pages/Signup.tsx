@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth'
+import useAuth from '../hooks/useAuth'
 import { toast } from 'react-hot-toast'
 
 export default function Signup() {
@@ -20,7 +20,11 @@ export default function Signup() {
       toast.success('Account created successfully')
       navigate('/dashboard')
     } catch (error) {
-      toast.error(error.message || 'Registration failed')
+      toast.error(
+        error && typeof error === 'object' && 'message' in error
+          ? (error as { message: string }).message
+          : 'Registration failed'
+      )
     } finally {
       setIsLoading(false)
     }
