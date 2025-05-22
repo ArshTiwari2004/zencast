@@ -6,10 +6,10 @@ import cookieParser from 'cookie-parser'
 import { createServer } from 'http'
 import { Server } from 'socket.io'
 import authRoutes from './routes/authRoutes.js'
-import recordingRoutes from './routes/recordingRoutes'
-import uploadRoutes from './routes/uploadRoutes'
-import errorHandler from './middleware/errorHandler'
-import initializeSocket from './socket'
+import recordingRoutes from './routes/recordingRoutes.js'
+import uploadRoutes from './routes/uploadRoutes.js'
+import errorHandler from './middleware/errorHandler.js'
+import initializeSocket from './socket.js'
 
 const app = express()
 const httpServer = createServer(app)
