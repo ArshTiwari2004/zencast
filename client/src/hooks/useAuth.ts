@@ -20,7 +20,10 @@ export default function useAuth() {
         withCredentials: true
       })
     } catch (error) {
-      throw new Error(error.response?.data?.message || 'Login failed')
+      if (error && typeof error === 'object' && 'response' in error && error.response && typeof error.response === 'object' && 'data' in error.response && error.response.data && typeof error.response.data === 'object' && 'message' in error.response.data) {
+        throw new Error((error.response as any).data.message || 'Login failed')
+      }
+      throw new Error('Login failed')
     }
   }
 
@@ -36,7 +39,20 @@ export default function useAuth() {
         withCredentials: true
       })
     } catch (error) {
-      throw new Error(error.response?.data?.message || 'Registration failed')
+      if (
+        error &&
+        typeof error === 'object' &&
+        'response' in error &&
+        error.response &&
+        typeof error.response === 'object' &&
+        'data' in error.response &&
+        error.response.data &&
+        typeof error.response.data === 'object' &&
+        'message' in error.response.data
+      ) {
+        throw new Error((error.response as any).data.message || 'Registration failed')
+      }
+      throw new Error('Registration failed')
     }
   }
 
@@ -46,7 +62,20 @@ export default function useAuth() {
       dispatch(setCredentials({ user: null, token: null, refreshToken: null }))
       setIsAuthenticated(false)
     } catch (error) {
-      throw new Error(error.response?.data?.message || 'Logout failed')
+      if (
+        error &&
+        typeof error === 'object' &&
+        'response' in error &&
+        error.response &&
+        typeof error.response === 'object' &&
+        'data' in error.response &&
+        error.response.data &&
+        typeof error.response.data === 'object' &&
+        'message' in error.response.data
+      ) {
+        throw new Error((error.response as any).data.message || 'Logout failed')
+      }
+      throw new Error('Logout failed')
     }
   }
 
