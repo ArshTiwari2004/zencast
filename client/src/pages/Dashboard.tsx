@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import api from '../services/api'
-import { Recording } from '../types'
+import type { Recording } from '../types'
 import { formatDate, formatDuration } from '../utils/timeUtils'
 
 const Dashboard = () => {
@@ -15,7 +15,11 @@ const Dashboard = () => {
         const response = await api.get('/recordings')
         setRecordings(response.data)
       } catch (error) {
-        setError(error.response?.data?.message || 'Failed to load recordings')
+        if (error && typeof error === 'object' && 'response' in error && error.response && typeof error.response === 'object' && 'data' in error.response && error.response.data && typeof error.response.data === 'object' && 'message' in error.response.data) {
+          setError((error as any).response.data.message || 'Failed to load recordings')
+        } else {
+          setError('Failed to load recordings')
+        }
       } finally {
         setIsLoading(false)
       }
@@ -29,7 +33,21 @@ const Dashboard = () => {
       await api.delete(`/recordings/${id}`)
       setRecordings(recordings.filter(r => r.id !== id))
     } catch (error) {
-      setError(error.response?.data?.message || 'Failed to delete recording')
+      if (
+        error &&
+        typeof error === 'object' &&
+        'response' in error &&
+        error.response &&
+        typeof error.response === 'object' &&
+        'data' in error.response &&
+        error.response.data &&
+        typeof error.response.data === 'object' &&
+        'message' in error.response.data
+      ) {
+        setError((error as any).response.data.message || 'Failed to delete recording')
+      } else {
+        setError('Failed to delete recording')
+      }
     }
   }
 
