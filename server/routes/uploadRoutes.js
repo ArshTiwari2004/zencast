@@ -3,8 +3,8 @@ import {
   getPresignedUrl,
   completeUpload,
   getRecording
-} from '../controllers/uploadController'
-import { protect } from '../middleware/authMiddleware'
+} from '../controllers/uploadController.js'
+import { protect } from '../middleware/authMiddleware.js'
 
 const router = express.Router()
 
