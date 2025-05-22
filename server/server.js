@@ -1,6 +1,7 @@
-import { httpServer } from './app'
-import { connectDB } from './config/db'
-import { connectRedis } from './config/redis'
+import { httpServer } from './app.js'
+import { connectDB } from './config/db.js'
+import { connectRedis } from './config/redis.js'
+
 
 const PORT = process.env.PORT || 3001
 

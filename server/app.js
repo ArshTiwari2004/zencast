@@ -5,11 +5,11 @@ import morgan from 'morgan'
 import cookieParser from 'cookie-parser'
 import { createServer } from 'http'
 import { Server } from 'socket.io'
-import authRoutes from './routes/authRoutes'
-import recordingRoutes from './routes/recordingRoutes'
-import uploadRoutes from './routes/uploadRoutes'
-import errorHandler from './middleware/errorHandler'
-import initializeSocket from './socket'
+import authRoutes from './routes/authRoutes.js'
+// import recordingRoutes from './routes/recordingRoutes'
+// import uploadRoutes from './routes/uploadRoutes'
+// import errorHandler from './middleware/errorHandler'
+// import initializeSocket from './socket'
 
 const app = express()
 const httpServer = createServer(app)
