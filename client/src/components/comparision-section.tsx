@@ -34,7 +34,7 @@ const ComparisonSection: React.FC = () => {
       },
     },
     {
-      name: "zencast",
+      name: "Zencast",
       features: {
         "Auto-rendered videos": true,
         "Real-time chunked upload": true,
@@ -72,17 +72,19 @@ const ComparisonSection: React.FC = () => {
               {competitors.map((competitor, index) => (
                 <tr
                   key={competitor.name}
-                  className={`border-t border-gray-700 ${
+                  className={`border-t border-gray-800/50 transition-all duration-300 hover:scale-[1.02] ${
                     competitor.highlight
-                      ? "bg-gradient-to-r from-cyan-500/10 to-purple-500/10 border-cyan-500/30"
-                      : "hover:bg-gray-800/30"
+                      ? "bg-gradient-to-r from-emerald-500/10 to-white/5 border-emerald-500/30 shadow-lg shadow-emerald-500/10"
+                      : "hover:bg-gray-900/30"
                   }`}
                 >
                   <td className="p-4">
-                    <div className={`font-semibold ${competitor.highlight ? "text-cyan-400" : "text-white"}`}>
+                    <div
+                      className={`font-semibold transition-all duration-300 ${competitor.highlight ? "text-emerald-400" : "text-white"}`}
+                    >
                       {competitor.name}
                       {competitor.highlight && (
-                        <span className="ml-2 text-xs bg-cyan-500/20 text-cyan-300 px-2 py-1 rounded-full">
+                        <span className="ml-2 text-xs bg-emerald-500/20 text-emerald-300 px-2 py-1 rounded-full animate-pulse">
                           That's us!
                         </span>
                       )}
@@ -92,10 +94,10 @@ const ComparisonSection: React.FC = () => {
                     <td key={featureIndex} className="p-4 text-center">
                       {hasFeature ? (
                         <Check
-                          className={`w-5 h-5 mx-auto ${competitor.highlight ? "text-cyan-400" : "text-green-400"}`}
+                          className={`w-5 h-5 mx-auto transition-all duration-300 hover:scale-110 ${competitor.highlight ? "text-emerald-400" : "text-green-400"}`}
                         />
                       ) : (
-                        <X className="w-5 h-5 text-gray-500 mx-auto" />
+                        <X className="w-5 h-5 text-gray-600 mx-auto transition-all duration-300 hover:scale-110" />
                       )}
                     </td>
                   ))}
