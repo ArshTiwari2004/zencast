@@ -3,6 +3,18 @@ Zencast
 </p>
 
 
+# WebRTC Signaling Flow
+
+![WebRTC Signaling Flow](webrtcsignaling.png)
+
+> **Note:** This is just for development purposes. In production, things would get different.
+
+
+
+
+
+
+
 ## Folder structuring and some files :
 
 ```bash
