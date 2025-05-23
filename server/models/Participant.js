@@ -22,12 +22,13 @@ class Participant extends Model {
   }
 
   static get relationMappings() {
-    const Recording = require('./Recording').default
-    const User = require('./User').default
     return {
       recording: {
         relation: Model.BelongsToOneRelation,
-        modelClass: Recording,
+        modelClass: async () => {
+          const mod = await import('./Recording.js')
+          return mod.default
+        },
         join: {
           from: 'participants.recordingId',
           to: 'recordings.id'
@@ -35,7 +36,10 @@ class Participant extends Model {
       },
       user: {
         relation: Model.BelongsToOneRelation,
-        modelClass: User,
+        modelClass: async () => {
+          const mod = await import('./User.js')
+          return mod.default
+        },
         join: {
           from: 'participants.userId',
           to: 'users.id'

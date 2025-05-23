@@ -11,28 +11,29 @@ class Recording extends Model {
       required: ['userId', 'title'],
       properties: {
         id: { type: 'string', format: 'uuid' },
-        userId: { type: 'string', format: 'uuid' },
+        userId: { type: 'integer' },  // lowercase to match DB column
         title: { type: 'string', minLength: 1 },
         description: { type: 'string' },
-        status: { 
+        status: {
           type: 'string',
           enum: ['pending', 'recording', 'uploading', 'processing', 'completed', 'failed']
         },
-        s3Key: { type: 'string' },
+        s3key: { type: 'string' },
         duration: { type: 'number' },
-        createdAt: { type: 'string', format: 'date-time' },
-        updatedAt: { type: 'string', format: 'date-time' }
+        createdat: { type: 'string', format: 'date-time' }, // lowercase
+        updatedat: { type: 'string', format: 'date-time' }  // lowercase
       }
     }
   }
 
   static get relationMappings() {
-    const User = require('./User').default
-    const Participant = require('./Participant').default
     return {
       user: {
         relation: Model.BelongsToOneRelation,
-        modelClass: User,
+        modelClass: async () => {
+          const mod = await import('./User.js')
+          return mod.default
+        },
         join: {
           from: 'recordings.userId',
           to: 'users.id'
@@ -40,7 +41,10 @@ class Recording extends Model {
       },
       participants: {
         relation: Model.HasManyRelation,
-        modelClass: Participant,
+        modelClass: async () => {
+          const mod = await import('./Participant.js')
+          return mod.default
+        },
         join: {
           from: 'recordings.id',
           to: 'participants.recordingId'
@@ -50,13 +54,15 @@ class Recording extends Model {
   }
 
   $beforeInsert() {
-    this.createdAt = new Date().toISOString()
-    this.updatedAt = new Date().toISOString()
+    const now = new Date().toISOString()
+    this.createdat = now
+    this.updatedat = now
   }
 
   $beforeUpdate() {
-    this.updatedAt = new Date().toISOString()
+    this.updatedat = new Date().toISOString()
   }
 }
+
 
 export default Recording

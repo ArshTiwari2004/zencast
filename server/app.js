@@ -16,9 +16,10 @@ const httpServer = createServer(app)
 
 // Middleware
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  origin: 'http://localhost:5173',
   credentials: true
 }))
+
 app.use(helmet())
 app.use(morgan('dev'))
 app.use(express.json())
@@ -35,10 +36,12 @@ app.use(errorHandler)
 // Socket.IO
 const io = new Server(httpServer, {
   cors: {
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
-    methods: ['GET', 'POST']
+    origin: ['http://localhost:5173', 'http://localhost:3000'], // supporting both ports temporarily
+    methods: ['GET', 'POST'],
+    credentials: true
   }
 })
+
 
 initializeSocket(io)
 

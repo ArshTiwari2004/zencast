@@ -14,20 +14,22 @@ class User extends Model {
       properties: {
         id: { type: 'string', format: 'uuid' },
         email: { type: 'string', format: 'email' },
-        password: { type: 'string', minLength: 8 },
+        password: { type: 'string', minLength: 8 },  // Use password here
         name: { type: 'string', minLength: 2 },
-        createdAt: { type: 'string', format: 'date-time' },
-        updatedAt: { type: 'string', format: 'date-time' }
+        created_at: { type: 'string', format: 'date-time' },
+        updated_at: { type: 'string', format: 'date-time' }
       }
     }
   }
 
   static get relationMappings() {
-    const Recording = require('./Recording').default
     return {
       recordings: {
         relation: Model.HasManyRelation,
-        modelClass: Recording,
+        modelClass: async () => {
+          const mod = await import('./Recording.js')
+          return mod.default
+        },
         join: {
           from: 'users.id',
           to: 'recordings.userId'
@@ -37,13 +39,17 @@ class User extends Model {
   }
 
   async $beforeInsert() {
-    this.createdAt = new Date().toISOString()
-    this.updatedAt = new Date().toISOString()
-    this.password = await bcrypt.hash(this.password, 10)
+    const now = new Date().toISOString()
+    this.created_at = now
+    this.updated_at = now
+
+    if (this.password) {
+      this.password = await bcrypt.hash(this.password, 10)
+    }
   }
 
   async $beforeUpdate() {
-    this.updatedAt = new Date().toISOString()
+    this.updated_at = new Date().toISOString()
     if (this.password) {
       this.password = await bcrypt.hash(this.password, 10)
     }

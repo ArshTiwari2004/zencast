@@ -12,7 +12,7 @@ const router = express.Router()
 
 router.post('/register', registerUser)
 router.post('/login', loginUser)
-router.post('/store-tokens', protect, storeTokens)
+router.post('/store-tokens', storeTokens) // removed protect middleware as If you are calling /store-tokens to store tokens initially right after login, the user likely does not yet have a valid token.
 router.post('/logout', protect, logoutUser)
 router.post('/refresh', refreshToken)
 
