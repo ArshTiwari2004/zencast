@@ -20,7 +20,7 @@ const Home = () => {
 
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight">
             Record Podcasts with{" "}
-            <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-emerald-400 via-white to-emerald-300 bg-clip-text text-transparent animate-pulse">
               Confidence
             </span>
           </h1>
@@ -33,18 +33,18 @@ const Home = () => {
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Link
               to="/signup"
-              className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold rounded-xl hover:from-cyan-400 hover:to-purple-400 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/25"
+              className="group relative px-8 py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold rounded-xl hover:from-emerald-400 hover:to-emerald-500 transition-all duration-300 transform hover:scale-105 hover:rotate-1 shadow-lg hover:shadow-emerald-500/25 animate-pulse"
             >
               <span className="relative z-10 flex items-center">
-                <Play className="w-5 h-5 mr-2" />
+                <Play className="w-5 h-5 mr-2 animate-bounce" />
                 Start Recording Free
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-purple-600 rounded-xl blur opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-emerald-700 rounded-xl blur opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
             </Link>
 
             <Link
               to="/login"
-              className="px-8 py-4 border border-gray-600 text-gray-300 font-semibold rounded-xl hover:border-gray-500 hover:text-white transition-all duration-300 hover:bg-gray-800/50"
+              className="px-8 py-4 border border-gray-700 text-gray-300 font-semibold rounded-xl hover:border-emerald-500 hover:text-emerald-400 transition-all duration-300 hover:bg-emerald-500/10 hover:scale-105"
             >
               Sign In
             </Link>
@@ -98,11 +98,17 @@ const Home = () => {
             ].map((feature, index) => (
               <div
                 key={index}
-                className="group p-8 bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/50 rounded-2xl hover:border-cyan-500/30 transition-all duration-300 hover:transform hover:scale-105"
+                className="group p-8 bg-gradient-to-br from-gray-900/80 to-black/80 border border-gray-800/50 rounded-2xl hover:border-emerald-500/50 transition-all duration-500 hover:transform hover:scale-105 hover:rotate-1 backdrop-blur-xl hover:shadow-2xl hover:shadow-emerald-500/10"
               >
-                <div className="text-cyan-400 mb-4 group-hover:text-cyan-300 transition-colors">{feature.icon}</div>
-                <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
-                <p className="text-gray-400 leading-relaxed">{feature.description}</p>
+                <div className="text-emerald-400 mb-4 group-hover:text-emerald-300 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-emerald-100 transition-colors duration-300">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
+                  {feature.description}
+                </p>
               </div>
             ))}
           </div>
@@ -115,16 +121,18 @@ const Home = () => {
       {/* CTA Section */}
       <section className="py-24 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/50 rounded-3xl p-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Ready to revolutionize your podcast?</h2>
+          <div className="bg-gradient-to-br from-gray-900/80 to-black/80 border border-gray-800/50 rounded-3xl p-12 backdrop-blur-xl hover:border-emerald-500/30 transition-all duration-500 hover:scale-105">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-pulse">
+              Ready to revolutionize your podcast?
+            </h2>
             <p className="text-xl text-gray-300 mb-8">
               Join creators who've already discovered the future of podcast recording
             </p>
             <Link
               to="/signup"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold rounded-xl hover:from-cyan-400 hover:to-purple-400 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/25"
+              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold rounded-xl hover:from-emerald-400 hover:to-emerald-500 transition-all duration-300 transform hover:scale-105 hover:rotate-1 shadow-lg hover:shadow-emerald-500/25 animate-bounce"
             >
-              <Play className="w-5 h-5 mr-2" />
+              <Play className="w-5 h-5 mr-2 animate-spin" />
               Start Your First Recording
             </Link>
           </div>

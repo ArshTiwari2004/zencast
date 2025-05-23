@@ -69,7 +69,7 @@ const Dashboard = () => {
     return (
       <GradientBackground variant="primary" className="min-h-screen flex justify-center items-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-gray-300 text-lg">Loading your recordings...</p>
         </div>
       </GradientBackground>
@@ -79,7 +79,7 @@ const Dashboard = () => {
   if (error) {
     return (
       <GradientBackground variant="primary" className="min-h-screen flex justify-center items-center">
-        <div className="max-w-md mx-auto p-6 bg-red-500/10 border border-red-500/20 rounded-xl text-center">
+        <div className="max-w-md mx-auto p-6 bg-red-500/10 border border-red-500/20 rounded-xl text-center backdrop-blur-xl">
           <p className="text-red-400 text-lg">{error}</p>
         </div>
       </GradientBackground>
@@ -96,9 +96,9 @@ const Dashboard = () => {
           </div>
           <Link
             to="/room/new"
-            className="mt-6 md:mt-0 inline-flex items-center px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold rounded-xl hover:from-cyan-400 hover:to-purple-400 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/25"
+            className="mt-6 md:mt-0 inline-flex items-center px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold rounded-xl hover:from-emerald-400 hover:to-emerald-500 transition-all duration-300 transform hover:scale-105 hover:rotate-1 shadow-lg hover:shadow-emerald-500/25 animate-pulse"
           >
-            <Plus className="w-5 h-5 mr-2" />
+            <Plus className="w-5 h-5 mr-2 animate-bounce" />
             New Recording
           </Link>
         </div>
@@ -106,8 +106,8 @@ const Dashboard = () => {
         {recordings.length === 0 ? (
           <div className="text-center py-20">
             <div className="max-w-md mx-auto">
-              <div className="w-24 h-24 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Play className="w-12 h-12 text-cyan-400" />
+              <div className="w-24 h-24 bg-gradient-to-r from-emerald-500/20 to-white/10 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
+                <Play className="w-12 h-12 text-emerald-400 animate-bounce" />
               </div>
               <h2 className="text-2xl font-bold text-white mb-4">Ready to create your first podcast?</h2>
               <p className="text-gray-400 mb-8">
@@ -115,9 +115,9 @@ const Dashboard = () => {
               </p>
               <Link
                 to="/room/new"
-                className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold rounded-xl hover:from-cyan-400 hover:to-purple-400 transition-all duration-300 transform hover:scale-105"
+                className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold rounded-xl hover:from-emerald-400 hover:to-emerald-500 transition-all duration-300 transform hover:scale-105 hover:rotate-1 animate-bounce"
               >
-                <Plus className="w-5 h-5 mr-2" />
+                <Plus className="w-5 h-5 mr-2 animate-spin" />
                 Create Your First Recording
               </Link>
             </div>
@@ -127,7 +127,7 @@ const Dashboard = () => {
             {recordings.map((recording) => (
               <div
                 key={recording.id}
-                className="group bg-gray-800/50 backdrop-blur-xl border border-gray-700/50 rounded-2xl overflow-hidden hover:border-cyan-500/30 transition-all duration-300 hover:transform hover:scale-105"
+                className="group bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 rounded-2xl overflow-hidden hover:border-emerald-500/50 transition-all duration-500 hover:transform hover:scale-105 hover:rotate-1 hover:shadow-2xl hover:shadow-emerald-500/10"
               >
                 <div className="relative aspect-video bg-gradient-to-br from-gray-700 to-gray-800">
                   {recording.status === "completed" ? (
@@ -137,8 +137,8 @@ const Dashboard = () => {
                       <div className="text-center">
                         {recording.status === "processing" ? (
                           <div className="flex flex-col items-center">
-                            <div className="w-12 h-12 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-                            <span className="text-cyan-400 font-medium">Processing...</span>
+                            <div className="w-12 h-12 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+                            <span className="text-emerald-400 font-medium">Processing...</span>
                           </div>
                         ) : (
                           <div className="flex flex-col items-center">
@@ -152,9 +152,9 @@ const Dashboard = () => {
 
                   <div className="absolute top-4 right-4">
                     <span
-                      className={`px-3 py-1 rounded-full text-xs font-medium ${
+                      className={`px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm ${
                         recording.status === "completed"
-                          ? "bg-green-500/20 text-green-400 border border-green-500/30"
+                          ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
                           : recording.status === "processing"
                             ? "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
                             : "bg-gray-500/20 text-gray-400 border border-gray-500/30"
@@ -166,7 +166,7 @@ const Dashboard = () => {
                 </div>
 
                 <div className="p-6">
-                  <h3 className="font-bold text-xl text-white mb-3 group-hover:text-cyan-400 transition-colors">
+                  <h3 className="font-bold text-xl text-white mb-3 group-hover:text-emerald-400 transition-all duration-300 group-hover:scale-105">
                     {recording.title}
                   </h3>
 
@@ -184,14 +184,14 @@ const Dashboard = () => {
                   <div className="flex justify-between items-center">
                     <Link
                       to={`/recording/${recording.id}`}
-                      className="flex items-center text-cyan-400 hover:text-cyan-300 font-medium transition-colors"
+                      className="flex items-center text-emerald-400 hover:text-emerald-300 font-medium transition-all duration-300 hover:scale-105"
                     >
                       <Eye className="w-4 h-4 mr-1" />
                       View Details
                     </Link>
                     <button
                       onClick={() => deleteRecording(recording.id)}
-                      className="flex items-center text-red-400 hover:text-red-300 transition-colors"
+                      className="flex items-center text-red-400 hover:text-red-300 transition-all duration-300 hover:scale-105"
                     >
                       <Trash2 className="w-4 h-4 mr-1" />
                       Delete
