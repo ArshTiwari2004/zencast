@@ -3,14 +3,28 @@
 import { Outlet } from "react-router-dom"
 import { Link } from "react-router-dom"
 import useAuth from "../hooks/useAuth"
-import { Mic2, LogOut, LayoutDashboard, UserPlus, LogIn } from "lucide-react"
+import { FloatingNav } from "../components/ui/floating-navbar"
+import { Mic2, LogOut, LayoutDashboard, UserPlus, LogIn, Home } from "lucide-react"
 
 const Layout = () => {
   const { isAuthenticated, logout } = useAuth()
 
+  const navItems = [
+    {
+      name: "Home",
+      link: "/",
+      icon: <Home className="h-4 w-4 text-neutral-500" />,
+    },
+    {
+      name: "Dashboard",
+      link: "/dashboard",
+      icon: <LayoutDashboard className="h-4 w-4 text-neutral-500" />,
+    },
+  ]
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-emerald-950/20 to-black">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(16,185,129,0.1),transparent_50%)]" />
+    <div className="min-h-screen bg-black">
+      <FloatingNav navItems={navItems} />
 
       <header className="relative z-20 border-b border-gray-900/50 backdrop-blur-xl bg-black/40">
         <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex justify-between items-center">
@@ -52,7 +66,7 @@ const Layout = () => {
                 </Link>
                 <Link
                   to="/signup"
-                  className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-lg hover:from-emerald-400 hover:to-emerald-500 transition-all duration-300 hover:scale-105 hover:rotate-1"
+                  className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-lg hover:from-emerald-400 hover:to-emerald-500 transition-all duration-300 hover:scale-105"
                 >
                   <UserPlus className="w-4 h-4" />
                   <span>Sign Up</span>
