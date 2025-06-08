@@ -155,6 +155,8 @@ const RecordingRoom = () => {
                   value={inviteLink} 
                   readOnly 
                   className="flex-1 bg-transparent text-white p-2 text-sm truncate"
+                  placeholder="Invite link"
+                  title="Invite link"
                 />
                 <CopyToClipboard text={inviteLink} onCopy={() => toast.info('Link copied to clipboard')}>
                   <button className="ml-2 px-3 py-2 bg-emerald-600 hover:bg-emerald-700 rounded-lg text-sm font-medium">

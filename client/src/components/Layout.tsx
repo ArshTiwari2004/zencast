@@ -76,10 +76,9 @@ const Layout = () => {
           </nav>
         </div>
       </header>
-
-      <main className="relative z-10">
+      <main className="relative z-10 ">
         <Outlet />
-      </main>
+      </main> 
 
       <footer className="relative z-10 border-t border-gray-900/50 backdrop-blur-xl bg-black/40">
         <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">

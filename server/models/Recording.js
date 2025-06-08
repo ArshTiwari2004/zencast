@@ -20,8 +20,8 @@ class Recording extends Model {
         },
         s3key: { type: 'string' },
         duration: { type: 'number' },
-        createdat: { type: 'string', format: 'date-time' }, // lowercase
-        updatedat: { type: 'string', format: 'date-time' }  // lowercase
+        createdAt: { type: 'string', format: 'date-time' }, // lowercase
+        updatedAt: { type: 'string', format: 'date-time' }  // lowercase
       }
     }
   }
@@ -55,8 +55,8 @@ class Recording extends Model {
 
   $beforeInsert() {
     const now = new Date().toISOString()
-    this.createdat = now
-    this.updatedat = now
+    this.createdAt = now
+    this.updatedAt = now
   }
 
   $beforeUpdate() {

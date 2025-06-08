@@ -3,7 +3,24 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme inline {
+
+.space-grotesk {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500; /* You can choose 400, 500, 700 etc. */
+  font-style: normal;
+  font-size: 24px;
+  color: #333;
+}
+
+
+
+
+
+
+
+
+/* @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -117,4 +134,4 @@
   body {
     @apply bg-background text-foreground;
   }
-}
+} */
