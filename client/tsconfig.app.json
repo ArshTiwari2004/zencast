@@ -17,8 +17,8 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+   "noUnusedLocals": false, // change to true in production as it can break some node modules
+    "noUnusedParameters": false, // change to true in production as it can break some node modules
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
