@@ -10,11 +10,66 @@
   font-weight: 500; /* You can choose 400, 500, 700 etc. */
   font-style: normal;
   font-size: 24px;
-  color: #333;
+
+}
+
+.caveat {
+  font-family: "Caveat", cursive;
+  font-optical-sizing: auto;
+  font-weight: 500; /* You can use 400, 500, 600, or 700 */
+  font-style: normal;
+  font-size: 28px;
+  color: #4a4a4a;
+}
+
+.oregano-regular {
+  font-family: "Oregano", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 26px;
+  color: #2c2c2c;
+}
+
+.oregano-regular-italic {
+  font-family: "Oregano", cursive;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 26px;
+  color: #2c2c2c;
 }
 
 
+.playfair-display {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 500; /* You can change to 400, 700, etc. */
+  font-style: normal;
+  font-size: 30px;
+  color: #1a1a1a;
+}
 
+.funnel-sans {
+  font-family: "Funnel Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500; /* Use 400 (normal), 500 (medium), or 700 (bold) */
+  font-style: normal;
+  font-size: 24px;
+  color: #2d2d2d;
+}
+
+
+.unbounded-regular {
+  font-family: "Unbounded", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.pacifico-regular {
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
 
 
 

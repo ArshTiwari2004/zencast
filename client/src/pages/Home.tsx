@@ -116,7 +116,7 @@ const Home = () => {
   ]
 
   return (
-    <div className="relative">
+    <div className="relative space-grotesk">
       <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="rgba(16, 185, 129, 0.3)" />
 
       {/* Hero Section */}
@@ -140,14 +140,14 @@ const Home = () => {
 
           <TextGenerateEffect
             words="Record Podcasts with Confidence"
-            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 text-white  "
+            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 text-white space-grotesk"
           />
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
-            className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
+            className="text-xl md:text-2xl text-white mb-12 max-w-4xl mx-auto leading-relaxed space-grotesk"
           >
             Zencast provides studio-quality remote recordings with automatic editing and cloud backup. No more
             post-production nightmares.
@@ -163,7 +163,7 @@ const Home = () => {
               to="/signup"
               className="group relative px-8 py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold rounded-xl hover:from-emerald-400 hover:to-emerald-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-emerald-500/25"
             >
-              <span className="relative z-10 flex items-center">
+              <span className="relative z-10 flex items-center space-grotesk">
                 <Play className="w-5 h-5 mr-2" />
                 Start Recording Free
               </span>
@@ -171,7 +171,7 @@ const Home = () => {
 
             <Link
               to="/login"
-              className="px-8 py-4 border border-gray-700 text-gray-300 font-semibold rounded-xl hover:border-emerald-500 hover:text-emerald-400 transition-all duration-300 hover:bg-emerald-500/10"
+              className="px-8 py-4 border border-gray-700 text-gray-300 font-semibold rounded-xl hover:border-emerald-500 hover:text-emerald-400 transition-all duration-300 hover:bg-emerald-500/10 space-grotesk"
             >
               Sign In
             </Link>

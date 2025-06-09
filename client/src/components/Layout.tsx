@@ -23,7 +23,7 @@ const Layout = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
       <FloatingNav navItems={navItems} />
 
       <header className="relative z-20 border-b border-gray-900/50 backdrop-blur-xl bg-black/40">
