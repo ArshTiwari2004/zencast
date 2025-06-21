@@ -1,6 +1,5 @@
-<p align = "center">
-Zencast 
-</p>
+<h2 align="center"><strong>Zencast</strong></h2>
+
 
 
 # WebRTC Signaling Flow
@@ -10,7 +9,45 @@ Zencast
 > **Note:** This is just for development purposes. In production, things would get different.
 
 
+# User flow :
 
+## 1. User Creates Session
+
+- **Endpoint:** `POST /api/recordings`  
+- **Action:**  
+  - Creates a Redis room  
+  - Inserts a new entry in the database  
+- **Returns:**  
+  - `roomId`
+
+## 2. Participants Join
+
+- **Action:**  
+  - WebSocket connection is established  
+  - Participant is added to the Redis room participants set
+
+## 3. Recording Starts
+
+- **Action:**  
+  - Browser `MediaRecorder` begins recording  
+  - Creates 10-second media chunks  
+- **Upload Destination:**  
+  - Each chunk is uploaded to:  
+    ```
+    s3://zencast-recordings/{roomId}/{userId}/{chunkIndex}.webm
+    ```
+
+## 4. Session Ends
+
+- **Endpoint:** `POST /api/uploads/complete`  
+- **Action:**  
+  - Triggers processing via Lambda  
+  - Lambda processes all `.webm` files and generates `final.mp4`  
+- **Upload Destination:**  
+  - Final file is moved to:  
+    ```
+    s3://zencast-recordings/processed/{roomId}/final.mp4
+    ```
 
 
 
