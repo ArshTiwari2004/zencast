@@ -11,7 +11,9 @@
 
 # User flow :
 
-## 1. User Creates Session
+## 1. Recording Session Flow
+
+### 1. User Creates Session
 
 - **Endpoint:** `POST /api/recordings`  
 - **Action:**  
@@ -20,13 +22,13 @@
 - **Returns:**  
   - `roomId`
 
-## 2. Participants Join
+### 2. Participants Join
 
 - **Action:**  
   - WebSocket connection is established  
   - Participant is added to the Redis room participants set
 
-## 3. Recording Starts
+### 3. Recording Starts
 
 - **Action:**  
   - Browser `MediaRecorder` begins recording  
@@ -37,7 +39,7 @@
     s3://zencast-recordings/{roomId}/{userId}/{chunkIndex}.webm
     ```
 
-## 4. Session Ends
+### 4. Session Ends
 
 - **Endpoint:** `POST /api/uploads/complete`  
 - **Action:**  
@@ -48,6 +50,16 @@
     ```
     s3://zencast-recordings/processed/{roomId}/final.mp4
     ```
+
+
+
+## 2. File Upload Flow
+
+
+<p align="center">
+  <img src="fileuploadflow.png" alt="File Upload flow" width="800"/>
+</p>
+
 
 
 
@@ -133,6 +145,48 @@ zencast/
 - `npm run dev`: Start all services in development
 - `npm run build`: Build all services
 - `npm run test`: Run tests
+
+
+
+## AWS Configuration
+
+### Required Services
+1. **S3 Bucket** for file storage
+2. **IAM User** with restricted permissions
+3. **Lambda** for video processing (optional)
+4. **EC2** or **Elastic Beanstalk** for backend
+
+### Setup Steps
+
+1. **Create S3 Bucket**:
+   ```bash
+   aws s3api create-bucket --bucket zencast-recordings-UNIQUEID \
+   --region us-east-1 \
+   --create-bucket-configuration LocationConstraint=us-east-1
+   ```
+
+2. **Configure CORS**:
+   ```bash
+   aws s3api put-bucket-cors --bucket zencast-recordings-UNIQUEID \
+   --cors-configuration file://cors.json
+   ```
+
+3. **Create IAM Policy**:
+   ```bash
+   aws iam create-policy --policy-name ZencastUploadPolicy \
+   --policy-document file://policy.json
+   ```
+
+4. **Deploy Lambda**:
+   ```bash
+   zip -r function.zip .
+   aws lambda create-function --function-name zencast-process-recording \
+   --zip-file fileb://function.zip \
+   --handler index.handler \
+   --runtime nodejs18.x \
+   --role arn:aws:iam::YOUR_ACCOUNT_ID:role/lambda-role
+   ```
+
 
 
 
