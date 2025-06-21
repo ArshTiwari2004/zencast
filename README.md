@@ -189,15 +189,84 @@ zencast/
 
 
 
+## Environment Variables
+
+These variables must be set in your `.env` files for the frontend and backend services.
+
+
+### Frontend (`.env`)
+
+```env
+# API and WebSocket
+VITE_API_BASE_URL=http://localhost:3001
+VITE_WS_BASE_URL=ws://localhost:3001
+
+# WebRTC Configuration
+VITE_STUN_SERVER_URL=stun:stun.l.google.com:19302
+VITE_TURN_SERVER_URL=turn:your.turnserver.com:3478
+VITE_TURN_USERNAME=your_turn_username
+VITE_TURN_CREDENTIAL=your_turn_password
+```
+
+### Backend (`.env`)
+
+```bash
+# Server
+PORT=3001
+
+# PostgreSQL Database
+DATABASE_URL=postgres://username:password@localhost:5432/database_name
+
+# Redis
+REDIS_URL=redis://localhost:6379
+
+# AWS S3
+AWS_ACCESS_KEY_ID=your_aws_access_key_id
+AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key
+AWS_REGION=us-east-1
+AWS_S3_BUCKET=your_s3_bucket_name
+
+# JWT Authentication
+JWT_SECRET=your_jwt_secret_here
+JWT_EXPIRES_IN=1h
+REFRESH_TOKEN_EXPIRES_IN=7d
+```
+
+
+## File Lifecycle
+
+- **Raw chunks** are uploaded to `recordings/{roomId}/{userId}/`.
+- **Processed files** are saved to `processed/{roomId}/`.
+
+To set a lifecycle policy to delete raw chunks after 7 days, run the following command:
+
+```bash
+aws s3api put-bucket-lifecycle-configuration \
+  --bucket zencast-recordings-UNIQUEID \
+  --lifecycle-configuration file://lifecycle.json
+```
 
 
 
 
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!  
+
+If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
 
 
 
+## 📫 Contact
+
+For any questions or collaboration, reach out at:  
+📧 arshtiwari12345@gmail.com  
+🌐 [Portfolio](https://arsh-portfolio-delta.vercel.app/) | [LinkedIn](https://www.linkedin.com/in/arsh-tiwari-072609284/)
 
 
+<p align="center">
+  Made with ❤️ by me
+</p>
 
 
 
